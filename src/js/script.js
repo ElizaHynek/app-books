@@ -41,9 +41,14 @@ function initActions(){
   for (let image of imagesList){
     image.addEventListener('dblclick', function(event){
       event.preventDefault();
-      image.classList.add(classNames.favorite);
-      const imageId = image.getAttribute('data-id');
-      favoriteBooks.push(imageId);
+      const bookId = image.getAttribute('data-id');
+      if (!favoriteBooks.includes(bookId)){
+        image.classList.add(classNames.favorite);
+        favoriteBooks.push(bookId);
+      } else {
+        image.classList.remove(classNames.favorite);
+        favoriteBooks.pop(bookId);
+      }
     });
   }   
 }
